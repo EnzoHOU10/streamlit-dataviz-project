@@ -4,7 +4,7 @@ import pandas as pd
 import requests
 
 # This is the dataset URL from your prompt
-DATA = "lic-data-2022.csv"
+DATA_URL = "https://www.data.gouv.fr/api/1/datasets/r/ce39c9d6-2e7f-4a05-9f95-9e6c06b38219"
 
 # This is a reliable GeoJSON for French departments
 GEOJSON_URL = "https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/departements.geojson"
@@ -24,7 +24,7 @@ def load_data():
     }
     
     try:
-        df = pd.read_csv(DATA, sep=';', dtype=dtypes_spec)
+        df = pd.read_csv(DATA_URL, sep=';', dtype=dtypes_spec)
         return df
     except Exception as e:
         st.error(f"Error loading data: {e}")
@@ -40,4 +40,5 @@ def load_geojson():
         return geojson
     except Exception as e:
         st.error(f"Error loading GeoJSON map: {e}")
+
         return None
