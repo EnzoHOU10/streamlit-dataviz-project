@@ -10,8 +10,9 @@ def clean_and_prep_data(df_raw):
     2. Converts all age-group columns to numeric, filling NaNs with 0.
     3. Creates new columns for total Female and Male licenses.
     """
+
     if df_raw.empty:
-        return pd.DataFrame()
+        return pd.DataFrame(), [], []
 
     df = df_raw.copy()
     
@@ -32,4 +33,5 @@ def clean_and_prep_data(df_raw):
     df['Female_Licences'] = df[f_cols].sum(axis=1)
     df['Male_Licences'] = df[h_cols].sum(axis=1)
     
+
     return df, f_cols, h_cols
